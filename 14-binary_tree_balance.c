@@ -14,7 +14,7 @@ int binary_tree_balance(const binary_tree_t *tree)
 	if (tree->left)
 		balance += 1 + binary_tree_balance_directional(tree->left, 1);
 	if (tree->right)
-		balance -= 1 + binary_tree_balance_directional(tree->right, -1);
+		balance += -1 + binary_tree_balance_directional(tree->right, -1);
 
 	return (balance);
 }
@@ -27,9 +27,9 @@ int binary_tree_balance_directional(const binary_tree_t *tree, int direction)
 		return (0);
 	if (direction > 0)
 	{
-		return balance += 1 + binary_tree_balance_directional(tree->left, direction);
+		return (1 + binary_tree_balance_directional(tree->left, direction));
 	}
 	if (direction < 0)
-		return balance -= 1 + binary_tree_balance_directional(tree->right, direction);
+		return (-1 + binary_tree_balance_directional(tree->right, direction));
 	return (0);
 }
