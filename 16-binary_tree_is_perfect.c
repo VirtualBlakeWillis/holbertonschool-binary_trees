@@ -7,7 +7,7 @@
 */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-    int balance = 0, full = 0, perfect = 0;
+    int balance = 0, full = 0;
     if (!tree)
         return (0);
 
