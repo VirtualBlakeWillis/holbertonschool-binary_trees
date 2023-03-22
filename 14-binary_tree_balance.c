@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-int binary_tree_balance_directional(const binary_tree_t *tree, int direction);
 /**
  * binary_tree_balance -  measures the balance factor of a binary tree
  * @tree: tree to measure
@@ -12,23 +11,9 @@ int binary_tree_balance(const binary_tree_t *tree)
 	if (!tree)
 		return (0);
 	if (tree->left)
-		balance += 1 + binary_tree_balance_directional(tree->left, 1);
+		balance += 1 + binary_tree_balance(tree->left);
 	if (tree->right)
-		balance += -1 + binary_tree_balance_directional(tree->right, -1);
+		balance -= 1 + binary_tree_balance(tree->right);
 
 	return (balance);
-}
-
-int binary_tree_balance_directional(const binary_tree_t *tree, int direction)
-{
-
-	if (!tree)
-		return (0);
-	if (direction > 0 && tree->left)
-	{
-		return (1 + binary_tree_balance_directional(tree->left, 1));
-	}
-	if (direction < 0 && tree->right)
-		return (-1 + binary_tree_balance_directional(tree->right, -1));
-	return (0);
 }
