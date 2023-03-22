@@ -21,9 +21,10 @@ int binary_tree_balance(const binary_tree_t *tree)
 
 int binary_tree_balance_directional(const binary_tree_t *tree, int direction)
 {
+	int balance = 0;
+
 	if (!tree)
 		return (0);
-	int balance = 0;
 	if (direction < 0)
 	{
 		return balance += 1 + binary_tree_balance_directional(tree->left, direction);
