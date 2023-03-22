@@ -35,7 +35,7 @@ int binary_tree_balance_directional(const binary_tree_t *tree, int direction)
 	{
 		balance += direction;
 
-		return (balance += MAX(binary_tree_balance_directional(tree->left, direction),
+		return (balance += MAX(binary_tree_balance_directional(tree->left, 1),
 							binary_tree_balance_directional(tree->right, direction)));
 	}
 	return (0);
