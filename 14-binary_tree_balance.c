@@ -24,11 +24,11 @@ int binary_tree_balance_directional(const binary_tree_t *tree, int direction)
 
 	if (!tree)
 		return (0);
-	if (direction > 0)
+	if (direction > 0 && tree->left)
 	{
 		return (1 + binary_tree_balance_directional(tree->left, 1));
 	}
-	if (direction < 0)
+	if (direction < 0 && tree->right)
 		return (-1 + binary_tree_balance_directional(tree->right, -1));
 	return (0);
 }
