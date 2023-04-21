@@ -61,15 +61,15 @@ bst_t *bst_remove(bst_t *root, int value)
 void *bst_remove_left(bst_t *node)
 {
 	if (node->left != NULL)
-		{
+	{
 			node->parent->left = node->left;
 			node->left->parent = node->parent;
-		}
+	}
 	else
-		{
+	{
 			node->parent->left = node->right;
 			node->right->parent = node->parent;
-		}
+	}
 	return (node);
 }
 
