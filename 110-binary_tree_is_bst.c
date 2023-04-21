@@ -10,7 +10,8 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 {
 	if (tree == NULL)
 		return (0);
-	return (check_tree(tree->left, tree->n, 0) && check_tree(tree->right, tree->n, 1));
+	return (check_tree(tree->left, tree->n, 0) &&
+			check_tree(tree->right, tree->n, 1));
 }
 
 /**
