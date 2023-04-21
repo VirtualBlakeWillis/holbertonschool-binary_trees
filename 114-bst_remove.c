@@ -52,6 +52,12 @@ bst_t *bst_remove(bst_t *root, int value)
 	return (root);
 }
 
+/**
+ * bst_remove_left - removes a node from a Binary Search Tree
+ * @node: double pointer to the root node of the tree
+ * Return: pointer to the new root node of the tree after removing the desired
+ * value, or NULL on failure
+ */
 void *bst_remove_left(bst_t *node)
 {
 	if (node->left != NULL)
@@ -59,13 +65,20 @@ void *bst_remove_left(bst_t *node)
 			node->parent->left = node->left;
 			node->left->parent = node->parent;
 		}
-		else
+	else
 		{
 			node->parent->left = node->right;
 			node->right->parent = node->parent;
 		}
 	return (node);
 }
+
+/**
+ * bst_remove_right - removes a node from a Binary Search Tree
+ * @node: double pointer to the root node of the tree
+ * Return: pointer to the new root node of the tree after removing the desired
+ * value, or NULL on failure
+ */
 void *bst_remove_right(bst_t *node)
 {
 	if (node->left != NULL)
@@ -80,6 +93,13 @@ void *bst_remove_right(bst_t *node)
 	}
 	return (node);
 }
+
+/**
+ * bst_remove_leaf - removes a node from a Binary Search Tree
+ * @node: double pointer to the root node of the tree
+ * Return: pointer to the new root node of the tree after removing the desired
+ * value, or NULL on failure
+ */
 bst_t *bst_remove_leaf(bst_t *node)
 {
 	if (node->left != NULL)
