@@ -1,4 +1,7 @@
 #include "binary_trees.h"
+bst_t *bst_remove_leaf(bst_t *root);
+void *bst_remove_right(bst_t *root);
+void *bst_remove_left(bst_t *root);
 
 
 /**
@@ -35,39 +38,12 @@ bst_t *bst_remove(bst_t *root, int value)
 	{
 		if (node->parent == NULL)
 		{
-			if (node->left != NULL)
-				node->left->parent = NULL;
-			else
-				node->right->parent = NULL;
-			free(node);
-			return (node->left != NULL ? node->left : node->right);
+			bst_remove_leaf(node);
 		}
 		if (node->parent->left == node)
-		{
-			if (node->left != NULL)
-			{
-				node->parent->left = node->left;
-				node->left->parent = node->parent;
-			}
-			else
-			{
-				node->parent->left = node->right;
-				node->right->parent = node->parent;
-			}
-		}
+			bst_remove_left(node);
 		else
-		{
-			if (node->left != NULL)
-			{
-				node->parent->right = node->left;
-				node->left->parent = node->parent;
-			}
-			else
-			{
-				node->parent->right = node->right;
-				node->right->parent = node->parent;
-			}
-		}
+			bst_remove_right(node);
 		free(node);
 		return (root);
 	}
@@ -75,6 +51,45 @@ bst_t *bst_remove(bst_t *root, int value)
 	bst_remove(node->right, node->n);
 	return (root);
 }
+
+void *bst_remove_left(bst_t *node)
+{
+	if (node->left != NULL)
+		{
+			node->parent->left = node->left;
+			node->left->parent = node->parent;
+		}
+		else
+		{
+			node->parent->left = node->right;
+			node->right->parent = node->parent;
+		}
+	return (node);
+}
+void *bst_remove_right(bst_t *node)
+{
+	if (node->left != NULL)
+	{
+		node->parent->right = node->left;
+		node->left->parent = node->parent;
+	}
+	else
+	{
+		node->parent->right = node->right;
+		node->right->parent = node->parent;
+	}
+	return (node);
+}
+bst_t *bst_remove_leaf(bst_t *node)
+{
+	if (node->left != NULL)
+		node->left->parent = NULL;
+	else
+		node->right->parent = NULL;
+	free(node);
+	return (node->left != NULL ? node->left : node->right);
+}
+
 
 /**
  * bst_search - searches for a value in a Binary Search Tree
